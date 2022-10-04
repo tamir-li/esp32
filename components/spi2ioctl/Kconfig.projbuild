@@ -1,0 +1,15 @@
+menu "SPI2 IOCTL Configuration"
+
+	config CS_GPIO
+		int "CS GPIO number"
+		range 0 46
+		default 5 if IDF_TARGET_ESP32
+		default 34 if IDF_TARGET_ESP32S2
+		default 9  if IDF_TARGET_ESP32C3
+		help
+			GPIO number (IOxx) to SPI CS.
+			Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used to CS.
+			On the ESP32, GPIOs 35-39 are input-only so cannot be used as outputs.
+			On the ESP32-S2, GPIO 46 is input-only so cannot be used as outputs.
+
+endmenu
